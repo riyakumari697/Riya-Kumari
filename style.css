@@ -1,0 +1,244 @@
+/* ==========================================================
+   Riya Kumari | Resume Website | Sakura theme
+   Fonts: Shippori Mincho (headings), Zen Maru Gothic (body)
+   Palette (all colours live in :root so the theme is consistent)
+   ========================================================== */
+
+:root {
+  --blush:      #fff5f7;   /* page background */
+  --petal:      #f9d3dd;   /* soft pink surfaces */
+  --petal-deep: #f2a9bd;   /* petals, borders */
+  --rose:       #a8325a;   /* links, accents */
+  --plum:       #3b1f2e;   /* text */
+  --bark:       #6b4a3a;   /* secondary text */
+  --leaf:       #e3ecd9;   /* small fresh-green accent */
+}
+
+/* ---------- Element selectors: base styles ---------- */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+
+body {
+  margin: 0;
+  background: var(--blush);
+  color: var(--plum);
+  font-family: "Zen Maru Gothic", "Segoe UI", Arial, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+h1, h2, h3 {
+  font-family: "Shippori Mincho", Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+h2 { font-size: 2rem; }
+h3 { font-size: 1.3rem; }
+
+p { margin: 0 0 1rem; max-width: 62ch; }
+
+ul { list-style: none; margin: 0; padding: 0; }
+
+a { color: var(--rose); }
+
+a:focus-visible {
+  outline: 3px solid var(--rose);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Navigation bar: position + flexbox ---------- */
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding: 0.8rem 6vw;
+  background: rgba(255, 245, 247, 0.94);
+  border-bottom: 1px solid var(--petal-deep);
+}
+
+.brand {
+  font-family: "Shippori Mincho", Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--plum);
+  text-decoration: none;
+}
+
+#navbar ul { display: flex; flex-wrap: wrap; gap: 0.25rem 1.4rem; }
+
+#navbar li a {
+  color: var(--bark);
+  text-decoration: none;
+  padding: 0.2rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+#navbar li a:hover { color: var(--rose); border-bottom-color: var(--rose); }
+
+/* ---------- Hero ---------- */
+#hero {
+  position: relative;          /* petals are positioned inside this box */
+  overflow: hidden;
+  padding: 6rem 6vw 5rem;
+  background:
+    radial-gradient(circle at 85% 15%, var(--petal) 0%, transparent 45%),
+    radial-gradient(circle at 10% 100%, var(--leaf) 0%, transparent 40%),
+    var(--blush);
+}
+
+.hero-text { position: relative; z-index: 1; max-width: 46rem; }
+
+.hello { color: var(--bark); margin-bottom: 0.25rem; }
+
+h1 {
+  font-size: clamp(3rem, 9vw, 5.5rem);
+  color: var(--plum);
+  letter-spacing: 0.01em;
+}
+
+.tagline { font-size: 1.25rem; color: var(--bark); }
+
+/* display: inline-block chips in a flex-wrap row */
+.chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+
+.chip {
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  background: #ffffff;
+  border: 1.5px solid var(--petal-deep);
+  border-radius: 999px;
+  font-size: 0.95rem;
+  color: var(--plum);
+}
+
+/* ---------- Falling petals: the one moment of motion ---------- */
+.petal {
+  position: absolute;
+  top: -40px;
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, #fbd5e0, var(--petal-deep));
+  border-radius: 150% 0 150% 0;
+  opacity: 0.85;
+  animation: fall 14s linear infinite;
+}
+
+.petal:nth-child(1) { left: 8%;  animation-delay: 0s;   }
+.petal:nth-child(2) { left: 22%; animation-delay: -5s;  width: 16px; height: 16px; }
+.petal:nth-child(3) { left: 37%; animation-delay: -9s;  }
+.petal:nth-child(4) { left: 55%; animation-delay: -2s;  width: 28px; height: 28px; }
+.petal:nth-child(5) { left: 70%; animation-delay: -7s;  width: 18px; height: 18px; }
+.petal:nth-child(6) { left: 83%; animation-delay: -11s; }
+.petal:nth-child(7) { left: 94%; animation-delay: -4s;  width: 14px; height: 14px; }
+
+@keyframes fall {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  50%  { transform: translate(40px, 240px) rotate(180deg); }
+  100% { transform: translate(-20px, 520px) rotate(360deg); }
+}
+
+/* ---------- Content sections ---------- */
+main section {
+  padding: 4rem 6vw;
+  max-width: 62rem;
+  margin: 0 auto;
+}
+
+/* Education: chronological list, left border works like a branch */
+.school-list {
+  display: grid;
+  gap: 1rem;
+  border-left: 3px solid var(--petal-deep);
+  padding-left: 1.5rem;
+}
+
+.school h3 { margin-bottom: 0.1rem; }
+.school p { margin: 0; color: var(--bark); }
+
+.score {
+  display: inline-block;
+  font-family: "Shippori Mincho", Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--rose);
+  line-height: 1.1;
+}
+
+/* Feature blocks (project + achievements) */
+.feature {
+  background: var(--petal);
+  border-radius: 24px 4px 24px 4px;   /* petal-like corners */
+  padding: 1.75rem 2rem;
+  margin-bottom: 1.25rem;
+}
+
+.feature p:last-child { margin-bottom: 0; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.tag {
+  display: inline-block;
+  padding: 0.1rem 0.8rem;
+  background: var(--leaf);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: var(--plum);
+}
+
+/* ---------- Contact ---------- */
+#contact { text-align: center; }
+#contact p { margin-left: auto; margin-right: auto; }
+
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  max-width: none;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  background: var(--rose);
+  color: #ffffff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.button:hover { background: var(--plum); }
+
+.button:focus-visible { outline-color: var(--plum); }
+
+/* ---------- Footer ---------- */
+footer {
+  text-align: center;
+  padding: 2rem 6vw;
+  background: var(--petal);
+  color: var(--bark);
+}
+
+footer p { margin: 0 auto; }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 600px) {
+  #navbar { justify-content: center; text-align: center; }
+  #hero { padding-top: 4rem; }
+  .feature { padding: 1.25rem; }
+}
+
+/* ---------- Respect reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .petal { animation: none; top: 20%; }
+}
